@@ -1,3 +1,3 @@
 INSERT INTO user_table (username, password, email) VALUES
-  ('john_doe', '$2a$10$4Zv3.2KR9GJojOjDXwM4oOSshLF3gZ0mpNQlZMv8GqBw20pMPb3Hi', 'john.doe@example.com'),
-  ('jane_doe', '$2a$10$2T7wmCvCEh7qxtkXYqNY2eXyZ.yj36p4nGnLymFYBHOXsWKE4BGai', 'jane.doe@example.com');
+  ('john_doe', '$2a$10$1MLTqf8ZsY/4V5vY17/xXOlx/ml6/xFhmCKHkpM5k/0oh6anB0yRy', 'john.doe@example.com'),
+  ('jane_doe', '$2a$10$1MLTqf8ZsY/4V5vY17/xXOlx/ml6/xFhmCKHkpM5k/0oh6anB0yRy', 'jane.doe@example.com');

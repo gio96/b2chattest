@@ -25,8 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-//@RequestMapping(path = "/v1/users")
-@RequestMapping("/auth")
+@RequestMapping(path = "/v1/users")
 @RequiredArgsConstructor
 public class UserController {
 
@@ -66,13 +65,4 @@ public class UserController {
         userService.deleteUser(userId);
     }
 
-//    @PostMapping("/generatetoken")
-//    public String authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
-//        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
-//        if (authentication.isAuthenticated()) {
-//            return jwtService.generateToken(authRequest.getUsername());
-//        } else {
-//            throw new UsernameNotFoundException("invalid user request !");
-//        }
-//    }
 }
