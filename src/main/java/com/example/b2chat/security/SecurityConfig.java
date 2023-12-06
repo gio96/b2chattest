@@ -31,12 +31,14 @@ public class SecurityConfig {
         return new UserInfoService();
     }
 
+
     // Configuring HttpSecurity
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/v1/auth/generateToken").permitAll()
+                //.requestMatchers("/v1/auth/generateToken","/swagger-ui.html").permitAll()
+                .requestMatchers("/v1/auth/generateToken","/v3/api-docs/**", "/swagger-ui/**", "/v2/api-docs/**", "/swagger-resources/**").permitAll()
                 .and()
                 .authorizeHttpRequests().requestMatchers("/v1/users/**").authenticated()
                 .and()

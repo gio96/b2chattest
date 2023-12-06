@@ -1,8 +1,11 @@
 package com.example.b2chat.controller;
 
 import com.example.b2chat.security.AuthRequest;
+import com.example.b2chat.security.JwtResponse;
 import com.example.b2chat.security.JwtService;
 import com.example.b2chat.security.UserInfoService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/v1/auth")
+@Api(tags = "Mis controladores")
 public class AuthController {
 
     @Autowired
@@ -28,10 +32,12 @@ public class AuthController {
 
 
     @PostMapping("/generateToken")
-    public String authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
+    @ApiOperation(value = "Obtener la raíz de la API")
+    public JwtResponse authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
         if (authentication.isAuthenticated()) {
-            return jwtService.generateToken(authRequest.getUsername());
+            var token = jwtService.generateToken(authRequest.getUsername());
+            return new JwtResponse(token);
         } else {
             throw new UsernameNotFoundException("invalid user request !");
         }
