@@ -5,6 +5,7 @@ import com.example.b2chat.excepciones.BusinessUserException;
 import com.example.b2chat.repository.UserRepository;
 import com.example.b2chat.service.IUserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,11 +13,17 @@ import org.springframework.stereotype.Service;
 public class UserService implements IUserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder encoder;
 
 
     //TODO try catch errores
 
-    public User createUser(User user) {
+    public User createUser(User request) {
+        User user = User.builder()
+                .username(request.getUsername())
+                .password(encoder.encode(request.getPassword()))
+                .email(request.getEmail()).build();
+
         return userRepository.save(user);
     }
 

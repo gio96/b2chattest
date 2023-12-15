@@ -34,13 +34,13 @@ public class UserController {
 
     private final IUserService userService;
     private final IGithubService githubService;
-    private final PasswordEncoder encoder;
+
 
     @PostMapping
     public User createUser(@Valid @RequestBody UserDto request) {
         User user = User.builder()
                 .username(request.getUsername())
-                .password(encoder.encode(request.getPassword()))
+                .password(request.getPassword())
                 .email(request.getEmail()).build();
 
         User savedUser = userService.createUser(user);
