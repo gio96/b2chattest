@@ -1,7 +1,9 @@
 package com.example.b2chat.controller;
 
+import com.example.b2chat.dto.ExternalApiResponse;
 import com.example.b2chat.dto.UserDto;
 import com.example.b2chat.entity.User;
+import com.example.b2chat.service.IGithubService;
 import com.example.b2chat.service.IUserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +33,7 @@ public class UserController {
 
 
     private final IUserService userService;
+    private final IGithubService githubService;
     private final PasswordEncoder encoder;
 
     @PostMapping
@@ -63,6 +66,11 @@ public class UserController {
     @DeleteMapping("/{userId}")
     public void deleteUser(@PathVariable Long userId) {
         userService.deleteUser(userId);
+    }
+
+    @GetMapping("/github")
+    public ExternalApiResponse getOctocatSpoonKnife() {
+       return githubService.getOctocatSpoonKnife();
     }
 
 }
